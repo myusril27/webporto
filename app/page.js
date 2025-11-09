@@ -1,65 +1,227 @@
-import Image from "next/image";
+'use client';
+
+import DarkVeil from '../components/DarkVeil';
+
+import Lanyard from '../components/Lanyard';
+
+import TargetCursor from '../components/TargetCursor';
+
+import PillNav from '../components/PillNav';
+
+import LogoLoop from '../components/LogoLoop';
+
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
+
+
+
+const techLogos = [
+
+  {node: <img src="/logo/arduino.jpeg" alt="Arduino" className="w-12 h-12" />,
+
+    title: "Arduino",href: "https://www.arduino.cc/"},
+
+  {node: <img src="/logo/esyeda.png" alt="esyeda" className="w-12 h-12" />,
+
+    title: "Esyeda", href: "https://easyeda.com/index.php/explore/pcb%20design"},
+
+  {node: <img src="/logo/golang.png" alt="Golang" className="w-12 h-12" />,
+
+    title: "Golang", href: "https://go.dev/solutions/case-studies"},
+
+  {node: <img src="/logo/next.jpeg" alt="Next" className="w-12 h-12" />,
+
+    title: "Nect.JS", href: "https://nextjs.org/"},
+
+  {node: <img src="/logo/php.png" alt="PHP" className="w-12 h-12" />,
+
+    title: "PHP", href: "https://www.php.net/"},
+
+  {node: <img src="/logo/python.webp" alt="Python" className="w-12 h-12" />,
+
+    title: "Python", href: "https://www.python.org/"},
+
+  {node: <img src="/logo/react.png" alt="react" className="w-12 h-12" />,
+
+    title: "react", href: "https://react.dev/"},
+
+  {node: <img src="/logo/instagram.jpg" alt="instagram" className="w-12 h-12" />,
+
+    title: "instagram", href: "https://www.instagram.com/yousrilll/"},
+
+  {node: <img src="/logo/linkedin.png" alt="linkedin" className="w-12 h-12" />,
+
+    title: "linkedin", href: "https://www.linkedin.com/in/muhamad-yusril-2579331ba/"},
+
+  { node: <img src="/logo/reacbits1.png" alt="Reactbits" className="w-12 h-12" />,
+
+    title: "Reactbits", href: "https://reactbits.dev/"},
+
+  { node: <img src="/logo/vue.png" alt="Vue" className="w-12 h-12" />,
+
+    title: "Vue", href: "https://vuejs.org/"},
+
+];
+
+
+
+
+
+const navItems = [
+
+  { label: 'Home', href: '/' },
+
+  { label: 'projects', href: '/about' },
+
+  { label: 'Services', href: '/services' },
+
+  { label: 'Contact', href: '/contact' }
+
+];
+
+
 
 export default function Home() {
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
+
+    <div className="relative w-full min-h-screen flex flex-col">
+
+
+
+      {/* Kursor custom */}
+
+      <TargetCursor
+
+        spinDuration={2}
+
+        hideDefaultCursor={true}
+
+        parallaxOn={true}
+
+      />
+
+
+
+      {/* Navbar */}
+
+      <PillNav
+
+        items={navItems}
+
+        activeHref="/"
+
+        className="custom-nav"
+
+        ease="power2.easeOut"
+
+        baseColor="#000080"
+
+        pillColor="#ffffff"
+
+        hoveredPillTextColor="#ffffff"
+
+        pillTextColor="#000000"
+
+      />
+
+
+
+      {/* Konten interaktif */}
+
+      <h1 className="text-white mt-20">Hover over the elements below</h1>
+
+      <button className="cursor-target my-4 px-4 py-2 bg-white text-black rounded">Click me!</button>
+
+      <div className="cursor-target my-2 px-4 py-2 bg-white text-black rounded inline-block">Hover target</div>
+
+
+
+      {/* Background */}
+
+      <div className="absolute top-0 left-0 w-full h-full z-0">
+
+        <DarkVeil />
+
+      </div>
+
+
+
+      {/* Bagian utama */}
+
+      <div className="flex-1 flex flex-row flex-wrap items-start z-10 p-6 lg:p-20">
+
+        {/* Lanyard kanan */}
+
+        <div className="flex-1 min-w-[250px] h-[300px] sm:h-[400px] md:h-[250px] lg:h-[200px] flex justify-center items-center">
+
+          <Lanyard position={[4,4,20]} gravity={[0,-40,0]} offsetX={0} />
+
+        </div>
+
+
+
+        {/* Teks kiri */}
+
+        <div className="shrink-0 w-full sm:w-1/2 text-white pl-6 lg:pl-10 bg-black/10 p-10 rounded mb-6 sm:mb-0 -mt-4">
+
+          <h1 className="text-3xl sm:text-5xl md:text-5xl font-bold leading-tight mb-2">
+
+            Muhamad Yusril
+
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <h2 className="text-lg sm:text-xl md:text-2xl font-medium leading-tight mb-6">
+
+            Full Stack Developer | Robotics Engineer
+
+          </h2>
+
+
+
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">About Me</h3>
+
+          <p className="text-base sm:text-lg md:text-xl leading-snug">
+
+            Saya adalah seorang software developer dan robotics engineer yang berpengalaman dalam membangun aplikasi web interaktif, sistem otomasi, dan solusi berbasis hardware & software. Saya menggabungkan kemampuan coding modern dengan pengetahuan mekanika dan elektronik untuk menghadirkan proyek inovatif, mulai dari aplikasi web hingga robotik cerdas. Saya senang bereksperimen dengan teknologi baru dan selalu mencari cara untuk mengoptimalkan proses dan pengalaman pengguna.
+
           </p>
+
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+      </div>
+
+
+
+      {/* LogoLoop di bawah */}
+
+      <div className="h-48 w-full flex justify-center items-center z-10 mt-auto">
+
+        <LogoLoop
+
+          logos={techLogos}
+
+          speed={120}
+
+          direction="left"
+
+          logoHeight={50}
+
+          gap={10}
+
+          pauseOnHover
+
+          scaleOnHover
+
+          ariaLabel="Technology partners"
+
+        />
+
+      </div>
+
+
+
     </div>
+
   );
+
 }
