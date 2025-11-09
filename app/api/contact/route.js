@@ -1,7 +1,11 @@
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-
+console.log("API KEY:", process.env.RESEND_API_KEY ? "TERBACA ✅" : "TIDAK TERBACA ❌");
+console.log("🔥 API Contact Route Loaded");
+console.log("🔑 RESEND:", process.env.RESEND_API_KEY ? "OK" : "MISSING");
+console.log("🧩 RECAPTCHA:", process.env.RECAPTCHA_SECRET ? "OK" : "MISSING");
+console.log("📨 RECEIVER:", process.env.RECEIVER_EMAIL ? "✅ OK" : "❌ MISSING");
 export async function POST(req) {
   try {
     const { name, email, phone, message, token } = await req.json();
