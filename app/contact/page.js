@@ -3,20 +3,22 @@ import DarkVeil from "@/components/DarkVeil";
 import TargetCursor from "@/components/TargetCursor";
 import PillNav from "@/components/PillNav";
 import LogoLoop from "@/components/LogoLoop";
-import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState, useRef } from "react";
+
 
 const techLogos = [
-  { node: <img src="/logo/arduino.jpeg" alt="Arduino" className="w-12 h-12" />, title: "Arduino", href: "https://www.arduino.cc/" },
-  { node: <img src="/logo/esyeda.png" alt="esyeda" className="w-12 h-12" />, title: "Esyeda", href: "https://easyeda.com/index.php/explore/pcb%20design" },
-  { node: <img src="/logo/golang.png" alt="Golang" className="w-12 h-12" />, title: "Golang", href: "https://go.dev/solutions/case-studies" },
-  { node: <img src="/logo/next.jpeg" alt="Next" className="w-12 h-12" />, title: "Next.JS", href: "https://nextjs.org/" },
-  { node: <img src="/logo/php.png" alt="PHP" className="w-12 h-12" />, title: "PHP", href: "https://www.php.net/" },
+  { node: <img src="/logo/arduino.webp" alt="Arduino" className="w-12 h-12" />, title: "Arduino", href: "https://www.arduino.cc/" },
+  { node: <img src="/logo/esyeda.webp" alt="esyeda" className="w-12 h-12" />, title: "Esyeda", href: "https://easyeda.com/index.php/explore/pcb%20design" },
+  { node: <img src="/logo/golang.webp" alt="Golang" className="w-12 h-12" />, title: "Golang", href: "https://go.dev/solutions/case-studies" },
+  { node: <img src="/logo/next.webp" alt="Next" className="w-12 h-12" />, title: "Next.JS", href: "https://nextjs.org/" },
+  { node: <img src="/logo/php.webp" alt="PHP" className="w-12 h-12" />, title: "PHP", href: "https://www.php.net/" },
   { node: <img src="/logo/python.webp" alt="Python" className="w-12 h-12" />, title: "Python", href: "https://www.python.org/" },
-  { node: <img src="/logo/react.png" alt="React" className="w-12 h-12" />, title: "React", href: "https://react.dev/" },
-  { node: <img src="/logo/instagram.jpg" alt="Instagram" className="w-12 h-12" />, title: "Instagram", href: "https://www.instagram.com/yousrilll/" },
-  { node: <img src="/logo/linkedin.png" alt="LinkedIn" className="w-12 h-12" />, title: "LinkedIn", href: "https://www.linkedin.com/in/muhamad-yusril-2579331ba/" },
-  { node: <img src="/logo/reacbits1.png" alt="Reactbits" className="w-12 h-12" />, title: "Reactbits", href: "https://reactbits.dev/" },
-  { node: <img src="/logo/vue.png" alt="Vue" className="w-12 h-12" />, title: "Vue", href: "https://vuejs.org/" },
+  { node: <img src="/logo/react.webp" alt="React" className="w-12 h-12" />, title: "React", href: "https://react.dev/" },
+  { node: <img src="/logo/instagram.webp" alt="Instagram" className="w-12 h-12" />, title: "Instagram", href: "https://www.instagram.com/yousrilll/" },
+  { node: <img src="/logo/linkedin.webp" alt="LinkedIn" className="w-12 h-12" />, title: "LinkedIn", href: "https://www.linkedin.com/in/muhamad-yusril-2579331ba/" },
+  { node: <img src="/logo/reacbits1.webp" alt="Reactbits" className="w-12 h-12" />, title: "Reactbits", href: "https://reactbits.dev/" },
+  { node: <img src="/logo/vue.webp" alt="Vue" className="w-12 h-12" />, title: "Vue", href: "https://vuejs.org/" },
 ];
 
 const navItems = [
@@ -35,6 +37,7 @@ export default function ContactPage() {
   });
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
+  const recaptchaRef = useRef(null);
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -45,7 +48,7 @@ export default function ContactPage() {
 
     try {
       // ✅ Ambil token dari reCAPTCHA v2 (checkbox)
-      const token = grecaptcha.getResponse();
+      const token = recaptchaRef.current.getValue();
       if (!token) {
         setResult("Harap verifikasi reCAPTCHA terlebih dahulu!");
         setLoading(false);
@@ -64,7 +67,7 @@ export default function ContactPage() {
       if (data.success) {
         setResult("✅ Pesan berhasil dikirim!");
         setFormData({ name: "", whatsapp: "", email: "", message: "" });
-        grecaptcha.reset();
+        recaptchaRef.current.reset();
       } else {
         setResult(`❌ ${data.error || "Gagal mengirim pesan."}`);
       }
@@ -162,10 +165,12 @@ export default function ContactPage() {
             ></textarea>
 
             {/* ✅ reCAPTCHA */}
-            <div
-              className="g-recaptcha mb-3"
-              data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-            ></div>
+            <ReCAPTCHA
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+              ref={recaptchaRef}
+              className="mb-3"
+              />
+
 
             <button
               type="submit"

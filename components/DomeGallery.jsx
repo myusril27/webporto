@@ -1,36 +1,18 @@
 'use client';
 import { useEffect, useMemo, useRef, useCallback } from 'react';
 import { useGesture } from '@use-gesture/react';
+import { useState } from 'react';
+
 
 const DEFAULT_IMAGES = [
-  {
-    src: 'https://images.unsplash.com/photo-1755331039789-7e5680e26e8f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Abstract art'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1755569309049-98410b94f66d?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Modern sculpture'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1755497595318-7e5e3523854f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Digital artwork'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1755353985163-c2a0fe5ac3d8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Contemporary art'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1745965976680-d00be7dc0377?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Geometric pattern'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1752588975228-21f44630bb3c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Textured surface'
-  },
-  {
-    src: 'https://pbs.twimg.com/media/Gyla7NnXMAAXSo_?format=jpg&name=large',
-    alt: 'Social media image'
-  }
+  {src: '/sertifikat/hybirdazure.webp',alt: 'azure award2'},
+  {src: '/sertifikat/simplilearn.webp',alt: 'Sertifikat Simplilearn'},
+  {src: '/sertifikat/networkmonitoring.webp',alt: 'azure award1'},
+  {src: '/sertifikat/privateazure.webp',alt: 'azure award3'},
+  {src: '/sertifikat/expressroute.webp',alt: 'azure award4'},
+  {src: '/sertifikat/azurenetwork.webp', alt: 'azure award5'},
+  {src: '/sertifikat/jaringan.webp',alt: 'azure award6'},
+  {src: '/sertifikat/linux+.webp',alt: 'linux +'}
 ];
 
 const DEFAULTS = {
@@ -130,6 +112,7 @@ export default function DomeGallery({
   openedImageBorderRadius = '30px',
   grayscale = true
 }) {
+  const [selectedIndex, setSelectedIndex] = useState(null);
   const rootRef = useRef(null);
   const mainRef = useRef(null);
   const sphereRef = useRef(null);
@@ -805,30 +788,39 @@ export default function DomeGallery({
                     right: '-999px'
                   }}>
                   <div
-                    className="item__image absolute block overflow-hidden cursor-pointer bg-gray-200 transition-transform duration-300"
-                    role="button"
-                    tabIndex={0}
-                    aria-label={it.alt || 'Open image'}
-                    onClick={e => {
-                      if (draggingRef.current) return;
-                      if (movedRef.current) return;
-                      if (performance.now() - lastDragEndAt.current < 80) return;
-                      if (openingRef.current) return;
-                      openItemFromElement(e.currentTarget);
-                    }}
-                    onPointerUp={e => {
-                      if (e.pointerType !== 'touch') return;
-                      if (draggingRef.current) return;
-                      if (movedRef.current) return;
-                      if (performance.now() - lastDragEndAt.current < 80) return;
-                      if (openingRef.current) return;
-                      openItemFromElement(e.currentTarget);
-                    }}
-                    style={{
-                      inset: '10px',
-                      borderRadius: `var(--tile-radius, ${imageBorderRadius})`,
-                      backfaceVisibility: 'hidden'
-                    }}>
+  className={`item__image absolute block overflow-hidden cursor-pointer bg-gray-200 transition-all duration-500 ease-in-out ${
+    selectedIndex === i ? 'scale-125 brightness-125 z-20' : 'scale-100 brightness-75'
+  }`}
+  role="button"
+  tabIndex={0}
+  aria-label={it.alt || 'Open image'}
+  onClick={e => {
+    if (draggingRef.current) return;
+    if (movedRef.current) return;
+    if (performance.now() - lastDragEndAt.current < 80) return;
+    if (openingRef.current) return;
+
+    // efek toggle klik
+    setSelectedIndex(selectedIndex === i ? null : i);
+  }}
+  onPointerUp={e => {
+    if (e.pointerType !== 'touch') return;
+    if (draggingRef.current) return;
+    if (movedRef.current) return;
+    if (performance.now() - lastDragEndAt.current < 80) return;
+    if (openingRef.current) return;
+    setSelectedIndex(selectedIndex === i ? null : i);
+  }}
+  style={{
+    inset: '10px',
+    borderRadius: `var(--tile-radius, ${imageBorderRadius})`,
+    backfaceVisibility: 'hidden',
+    boxShadow:
+      selectedIndex === i
+        ? '0 0 40px rgba(255, 255, 255, 1)'
+        : '0 0 20px rgba(255, 255, 255, 1)',
+  }}
+>
                     <img
                       src={it.src}
                       draggable={false}
@@ -878,7 +870,7 @@ export default function DomeGallery({
               className="scrim absolute inset-0 z-10 pointer-events-none opacity-0 transition-opacity duration-500"
               style={{
                 background: 'rgba(0, 0, 0, 0.4)',
-                backdropFilter: 'blur(3px)'
+                backdropFilter: 'blur(1px)'
               }} />
             <div
               ref={frameRef}

@@ -70,9 +70,9 @@ export default function ContactForm() {
 
       <input
         type="text"
-        name="phone"
+        name="WhatsApp"
         placeholder="No. WhatsApp"
-        value={form.phone}
+        value={form.WhatsApp}
         onChange={handleChange}
         required
         className="w-full mb-3 p-3 bg-transparent border border-gray-400 rounded-lg focus:outline-none focus:border-white"

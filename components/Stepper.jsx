@@ -104,7 +104,7 @@ export default function Stepper({
                   onClick={handleBack}
                   className={`duration-350 rounded px-2 py-1 transition ${
                     currentStep === 1
-                      ? 'pointer-events-none opacity-50 text-neutral-400'
+                      ? 'pointer-events-none opacity-50 text-neutral-100'
                       : 'text-neutral-400 hover:text-neutral-700'
                   }`}
                   {...backButtonProps}>
@@ -205,7 +205,7 @@ function StepIndicator({ step, currentStep, onClickStep, disableStepIndicators }
       <motion.div
         variants={{
           inactive: { scale: 1, backgroundColor: '#222', color: '#a3a3a3' },
-          active: { scale: 1, backgroundColor: '#5227FF', color: '#5227FF' },
+          active: { scale: 1, backgroundColor: '##87CEEB', color: '#87CEEB' },
           complete: { scale: 1, backgroundColor: '#5227FF', color: '#3b82f6' }
         }}
         transition={{ duration: 0.3 }}
@@ -225,7 +225,7 @@ function StepIndicator({ step, currentStep, onClickStep, disableStepIndicators }
 function StepConnector({ isComplete }) {
   const lineVariants = {
     incomplete: { width: 0, backgroundColor: 'transparent' },
-    complete: { width: '100%', backgroundColor: '#5227FF' }
+    complete: { width: '100%', backgroundColor: '#ADD8E6' }
   };
 
   return (

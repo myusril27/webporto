@@ -16,50 +16,28 @@ import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/s
 
 const techLogos = [
 
-  {node: <img src="/logo/arduino.jpeg" alt="Arduino" className="w-12 h-12" />,
-
+  {node: <img src="/logo/arduino.webp" alt="Arduino" className="w-12 h-12" />,
     title: "Arduino",href: "https://www.arduino.cc/"},
-
-  {node: <img src="/logo/esyeda.png" alt="esyeda" className="w-12 h-12" />,
-
+  {node: <img src="/logo/esyeda.webp" alt="esyeda" className="w-12 h-12" />,
     title: "Esyeda", href: "https://easyeda.com/index.php/explore/pcb%20design"},
-
-  {node: <img src="/logo/golang.png" alt="Golang" className="w-12 h-12" />,
-
+  {node: <img src="/logo/golang.webp" alt="Golang" className="w-12 h-12" />,
     title: "Golang", href: "https://go.dev/solutions/case-studies"},
-
-  {node: <img src="/logo/next.jpeg" alt="Next" className="w-12 h-12" />,
-
-    title: "Nect.JS", href: "https://nextjs.org/"},
-
-  {node: <img src="/logo/php.png" alt="PHP" className="w-12 h-12" />,
-
+  {node: <img src="/logo/next.webp" alt="Next" className="w-12 h-12" />,
+    title: "Next.JS", href: "https://nextjs.org/"},
+  {node: <img src="/logo/php.webp" alt="PHP" className="w-12 h-12" />,
     title: "PHP", href: "https://www.php.net/"},
-
   {node: <img src="/logo/python.webp" alt="Python" className="w-12 h-12" />,
-
     title: "Python", href: "https://www.python.org/"},
-
-  {node: <img src="/logo/react.png" alt="react" className="w-12 h-12" />,
-
+  {node: <img src="/logo/react.webp" alt="react" className="w-12 h-12" />,
     title: "react", href: "https://react.dev/"},
-
-  {node: <img src="/logo/instagram.jpg" alt="instagram" className="w-12 h-12" />,
-
+  {node: <img src="/logo/instagram.webp" alt="instagram" className="w-12 h-12" />,
     title: "instagram", href: "https://www.instagram.com/yousrilll/"},
-
-  {node: <img src="/logo/linkedin.png" alt="linkedin" className="w-12 h-12" />,
-
+  {node: <img src="/logo/linkedin.webp" alt="linkedin" className="w-12 h-12" />,
     title: "linkedin", href: "https://www.linkedin.com/in/muhamad-yusril-2579331ba/"},
-
-  { node: <img src="/logo/reacbits1.png" alt="Reactbits" className="w-12 h-12" />,
-
+  { node: <img src="/logo/reacbits1.webp" alt="Reactbits" className="w-12 h-12" />,
     title: "Reactbits", href: "https://reactbits.dev/"},
-
-  { node: <img src="/logo/vue.png" alt="Vue" className="w-12 h-12" />,
-
+  { node: <img src="/logo/vue.webp" alt="Vue" className="w-12 h-12" />,
     title: "Vue", href: "https://vuejs.org/"},
-
 ];
 
 
